@@ -17,10 +17,14 @@ int		ft_init_mlx(t_env *env)
 	if (!(env->mlx = mlx_init()))
 		return (1);
 	env->win = mlx_new_window(env->mlx, SIZEX, SIZEY, "FDF");
-	env->r = 100;
-	env->g = 100;
-	env->b = 100;
-	env->zoom = 50;
+	env->b = 255;
+	env->g = 255;
+	env->r = 255;
+	env->cx = 1.;
+	env->cy = 1.;
+	env->cz = 1.;
+	env->test = 0;
+	env->zoomz = 5;
 	return (0);
 }
 
@@ -68,4 +72,6 @@ void	ft_getsize(char *av, t_env *env)
 	close(fd);
 	env->x_max = c_max;
 	env->y_max = lin - 1;
+	env->zoomx = SIZEX /(env->x_max + env->y_max);
+	env->zoomy = SIZEY /(env->x_max + env->y_max);
 }

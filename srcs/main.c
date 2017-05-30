@@ -11,7 +11,26 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "stdlib.h"
+#include "event.h"
+
+int 	my_key_func(int keycode, t_env *env)
+{
+	int i;
+
+	i = -1;
+	while (++i < NBEVE)
+	{
+		if (keycode == g_ev[i].key)
+		{
+			g_ev[i].f(env);
+			break ;
+		}
+	}
+	//printf("%i\n",keycode);
+	return (0);
+}
+
+
 
 int		main(int ac, char **av)
 {
@@ -25,6 +44,7 @@ int		main(int ac, char **av)
 	ft_getsize(av[1], env);
 	ft_fill(av[1], env);
 	ft_draw(env);
+	mlx_key_hook(env->win, my_key_func, env);
 	mlx_loop(env->mlx);
 	return (0);
 }

@@ -14,10 +14,6 @@
 
 static void	ft_display_img(t_env *env)
 {
-	int		sizeline;
-	int		endian;
-	int		bpp;
-	
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_destroy_image(env->mlx, env->img);
 }
@@ -47,13 +43,13 @@ void	ft_draw(t_env *env)
 			if (x + 1 < env->x_max && env->map[y][x] != NOZ
 				&& env->map[y][x + 1] != NOZ)
 			{
-				ft_apply_proj_iso(env, x, y);
+				ft_apply_proj_isoh(env, x, y);
 				ft_draw_lines(env);
 			}
 			if (y + 1 < env->y_max && env->map[y][x] != NOZ
 				&& env->map[y + 1][x] != NOZ)
 			{
-				ft_apply_proj_iso_end(env, x, y);
+				ft_apply_proj_isov(env, x, y);
 				ft_draw_lines(env);
 			}
 			x++;

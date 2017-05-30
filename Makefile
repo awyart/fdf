@@ -13,6 +13,7 @@
 CC = gcc
 NAME = fdf
 GRAPH = -framework OpenGL -framework AppKit
+FLAGS = -Werror -Wall -Wextra
 SRC1 = main.c\
 		draw.c\
 		init.c\
@@ -34,7 +35,17 @@ SRC2 = ft_memdel.c \
 	ft_isdigit.c \
 	ft_atoi.c \
 
-SRC =$(SRC1) $(patsubst %,utility/%,$(SRC2))
+SRC3 = ev+-.c\
+	evcolor.c \
+	evexit.c \
+	evrot.c \
+	evrot2.c \
+	evz.c \
+	eviso.c \
+	evcolor2.c
+
+
+SRC =$(SRC1) $(patsubst %,utility/%,$(SRC2)) $(patsubst %,event/%,$(SRC3))
 
 IPATH = includes
 VPATH = srcs
@@ -42,7 +53,7 @@ VPATH = srcs
 all : $(NAME)
 
 $(NAME) : $(SRC)
-	@$(CC) -o $(NAME) $^ libmlx.a -I $(IPATH) $(GRAPH)
+	@$(CC) $(FLAGS) -o $(NAME) $^ libmlx.a -I $(IPATH) $(GRAPH) -g
 
 clean :
 	@rm -f $(OBJ)
