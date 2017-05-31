@@ -42,7 +42,8 @@ SRC3 = ev+-.c\
 	evrot2.c \
 	evz.c \
 	eviso.c \
-	evcolor2.c
+	evcolor2.c \
+	evcolor3.c
 
 
 SRC =$(SRC1) $(patsubst %,utility/%,$(SRC2)) $(patsubst %,event/%,$(SRC3))
@@ -53,7 +54,7 @@ VPATH = srcs
 all : $(NAME)
 
 $(NAME) : $(SRC)
-	@$(CC) $(FLAGS) -o $(NAME) $^ libmlx.a -I $(IPATH) $(GRAPH) -g
+	@$(CC) $(FLAGS) -o $(NAME) $^ libmlx.a -I $(IPATH) 
 
 clean :
 	@rm -f $(OBJ)
@@ -62,3 +63,4 @@ fclean : clean
 	@rm -f $(NAME)
 
 re : fclean $(NAME)
+

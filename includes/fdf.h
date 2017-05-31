@@ -34,6 +34,7 @@ typedef struct	s_env
 	char		*pix;
 	int			x_max;
 	int			y_max;
+	int 		zmax;
 	int			r;
 	int			g;
 	int			b;
@@ -43,7 +44,6 @@ typedef struct	s_env
 	double 		cx;
 	double		cy;
 	double		cz;
-	int 		test;
 	int			x1;
 	int			x2;
 	int			y1;
@@ -77,6 +77,8 @@ void			ft_draw_lines(t_env *env);
 		
 int				ft_init_mlx(t_env *env);
 void			ft_getsize(char *av, t_env *env);
+void			ft_create_img(t_env *env);
+void			ft_display_img(t_env *env);
 		
 void 			ft_apply_proj_isoh(t_env *env, int x, int y);
 void			ft_apply_proj_isov(t_env *env, int x, int y);

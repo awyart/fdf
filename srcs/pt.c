@@ -12,6 +12,25 @@
 
 #include "fdf.h"
 
+static int ft_getmax(t_env *env)
+{
+	int i;
+	int j;
+	int c;
+
+	i = -1;
+	j = -1;
+	c = 1;
+	while (++i < env->y_max)
+	{
+		while(++j < env->x_max)
+		{
+			if (abs(env->map[i][j] > c))
+				c = abs(env->map[i][j]);
+		}
+	}
+	return (c);
+}
 static void	ft_fillmap(t_env *env, char **split, int *i, int j)
 {
 	int		k;
@@ -56,4 +75,5 @@ void	ft_fill(char *av, t_env *env)
 		j++;
 	}
 	close(fd);
+	env->zmax = ft_getmax(env);
 }

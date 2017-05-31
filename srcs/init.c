@@ -20,10 +20,9 @@ int		ft_init_mlx(t_env *env)
 	env->b = 255;
 	env->g = 255;
 	env->r = 255;
-	env->cx = 1.;
-	env->cy = 1.;
-	env->cz = 1.;
-	env->test = 0;
+	env->cx = 0;
+	env->cy = 0;
+	env->cz = 0;
 	env->zoomz = 5;
 	return (0);
 }

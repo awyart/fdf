@@ -12,13 +12,13 @@
 
 #include "fdf.h"
 
-static void	ft_display_img(t_env *env)
+void	ft_display_img(t_env *env)
 {
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 	mlx_destroy_image(env->mlx, env->img);
 }
 
-static void	ft_create_img(t_env *env)
+void	ft_create_img(t_env *env)
 {
 	int		bpp;
 	int		sizeline;

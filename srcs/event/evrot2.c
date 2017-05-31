@@ -14,10 +14,12 @@
 
 void 	ft_ev43(t_env *env)
 {
+	env->cz += 10;
 	ft_draw(env);
 }
 
 void 	ft_ev47(t_env *env)
 {
+	env->cz -= 10;
 	ft_draw(env);
 }
