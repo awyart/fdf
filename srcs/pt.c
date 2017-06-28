@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awyart <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 14:35:38 by awyart            #+#    #+#             */
-/*   Updated: 2017/05/29 14:35:40 by awyart           ###   ########.fr       */
+/*   Created: 2017/06/01 17:56:32 by awyart            #+#    #+#             */
+/*   Updated: 2017/06/01 18:00:47 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int ft_getmax(t_env *env)
+static int	ft_getmax(t_env *env)
 {
 	int i;
 	int j;
@@ -23,14 +23,16 @@ static int ft_getmax(t_env *env)
 	c = 1;
 	while (++i < env->y_max)
 	{
-		while(++j < env->x_max)
+		while (++j < env->x_max)
 		{
-			if (abs(env->map[i][j] > c))
+			if (abs(env->map[i][j] > c) && env->map[i][j] != NOZ)
 				c = abs(env->map[i][j]);
 		}
+		j = 0;
 	}
 	return (c);
 }
+
 static void	ft_fillmap(t_env *env, char **split, int *i, int j)
 {
 	int		k;
@@ -49,7 +51,7 @@ static void	ft_fillmap(t_env *env, char **split, int *i, int j)
 	}
 }
 
-void	ft_fill(char *av, t_env *env)
+void		ft_fill(char *av, t_env *env)
 {
 	char	*line;
 	char	**split;
@@ -63,7 +65,7 @@ void	ft_fill(char *av, t_env *env)
 		return ;
 	fd = open(av, O_RDONLY);
 	env->map = (int**)malloc(sizeof(int*) * env->y_max);
-	while (get_next_line(fd, &line) == 1 && j != env->y_max)
+	while (get_next_line(fd, &line) == 1)
 	{
 		env->map[j] = (int*)malloc(sizeof(int) * env->x_max);
 		split = ft_strsplit(line, ' ');

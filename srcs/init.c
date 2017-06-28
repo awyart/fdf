@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awyart <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 14:35:04 by awyart            #+#    #+#             */
-/*   Updated: 2017/05/29 14:35:05 by awyart           ###   ########.fr       */
+/*   Created: 2017/06/01 17:56:12 by awyart            #+#    #+#             */
+/*   Updated: 2017/06/02 11:57:04 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int		ft_init_mlx(t_env *env)
 	env->cx = 0;
 	env->cy = 0;
 	env->cz = 0;
-	env->zoomz = 5;
+	env->mvx = 0;
+	env->mvy = 0;
+	env->zoomz = 0.1;
 	return (0);
 }
 
@@ -59,9 +61,9 @@ void	ft_getsize(char *av, t_env *env)
 	c = 0;
 	c_max = 0;
 	fd = open(av, O_RDONLY);
-	while (get_next_line(fd, &line) == 1)
+	(fd == -1 ? exit(0) : 1);
+	while (get_next_line(fd, &line) == 1 && (c = ft_getline(line)))
 	{
-		c = ft_getline(line);
 		if (c > c_max)
 			c_max = c;
 		lin++;
@@ -70,7 +72,7 @@ void	ft_getsize(char *av, t_env *env)
 	}
 	close(fd);
 	env->x_max = c_max;
-	env->y_max = lin - 1;
-	env->zoomx = SIZEX /(env->x_max + env->y_max);
-	env->zoomy = SIZEY /(env->x_max + env->y_max);
+	env->y_max = lin;
+	env->zoomx = SIZEX / (env->x_max + env->y_max) + .5;
+	env->zoomy = SIZEY / (env->x_max + env->y_max) + .5;
 }

@@ -6,7 +6,7 @@
 #    By: awyart <awyart@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 22:10:59 by awyart            #+#    #+#              #
-#    Updated: 2017/05/23 10:22:16 by awyart           ###   ########.fr        #
+#    Updated: 2017/06/02 11:59:15 by awyart           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC2 = ft_memdel.c \
 	ft_isdigit.c \
 	ft_atoi.c \
 
-SRC3 = ev+-.c\
+SRC3 = evzoom.c\
 	evcolor.c \
 	evexit.c \
 	evrot.c \
@@ -43,7 +43,9 @@ SRC3 = ev+-.c\
 	evz.c \
 	eviso.c \
 	evcolor2.c \
-	evcolor3.c
+	evcolor3.c \
+	evmv.c \
+	setcolor.c
 
 
 SRC =$(SRC1) $(patsubst %,utility/%,$(SRC2)) $(patsubst %,event/%,$(SRC3))
@@ -54,7 +56,7 @@ VPATH = srcs
 all : $(NAME)
 
 $(NAME) : $(SRC)
-	@$(CC) $(FLAGS) -o $(NAME) $^ libmlx.a -I $(IPATH) 
+	@$(CC) $(FLAGS) -o $(NAME) $^ libmlx.a -I $(IPATH) $(GRAPH)
 
 clean :
 	@rm -f $(OBJ)
@@ -63,4 +65,3 @@ fclean : clean
 	@rm -f $(NAME)
 
 re : fclean $(NAME)
-

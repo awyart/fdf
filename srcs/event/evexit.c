@@ -17,4 +17,3 @@ void	ft_exit(t_env *env)
 	env->g = 5;
 	exit(0);
 }
-

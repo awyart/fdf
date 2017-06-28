@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awyart <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: awyart <awyart@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/29 14:34:55 by awyart            #+#    #+#             */
-/*   Updated: 2017/05/29 14:34:58 by awyart           ###   ########.fr       */
+/*   Created: 2017/06/01 17:55:55 by awyart            #+#    #+#             */
+/*   Updated: 2017/06/01 19:23:28 by awyart           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,16 @@ static void	ft_put_px(t_env *env, int x, int y)
 	}
 }
 
-void	ft_draw_lines(t_env *env)
+static int	ft_douille(t_env *env, int *dx, int *dy, int s[2])
+{
+	*dx = abs(env->x2 - env->x1);
+	*dy = abs(env->y2 - env->y1);
+	s[0] = ((env->x1 < env->x2) ? (1) : (-1));
+	s[1] = ((env->y1 < env->y2) ? (1) : (-1));
+	return (1 / 2 * ((*dx > *dy) ? (*dx) : (-(*dy))));
+}
+
+void		ft_draw_lines(t_env *env)
 {
 	int dx;
 	int dy;
@@ -30,11 +39,7 @@ void	ft_draw_lines(t_env *env)
 	int err;
 	int e2;
 
-	dx= abs(env->x2 - env->x1);
-	dy = abs(env->y2 - env->y1);
-	err = 1 / 2 * ((dx > dy) ? (dx) : (-(dy)));
-	s[0] = ((env->x1 < env->x2) ? (1) : (-1));
-	s[1] = ((env->y1 < env->y2) ? (1) : (-1));
+	err = ft_douille(env, &dx, &dy, s);
 	while (1)
 	{
 		ft_put_px(env, env->x1, env->y1);
@@ -53,4 +58,3 @@ void	ft_draw_lines(t_env *env)
 		}
 	}
 }
-
